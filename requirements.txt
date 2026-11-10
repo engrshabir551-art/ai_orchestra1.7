@@ -1,0 +1,5 @@
+streamlit>=1.40  # older versions lack st.navigation
+anthropic>=0.40
+pandas>=2.0
+requests>=2.31
+tzdata>=2024.1  # time zones on Windows

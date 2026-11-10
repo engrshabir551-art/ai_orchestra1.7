@@ -1,0 +1,20 @@
+# Runs the app behind HTTPS. Put your domain in a file named .env:  DOMAIN=orchestra.example.com
+services:
+  app:
+    build: .
+    restart: unless-stopped
+    volumes:
+      - ./data:/data          # database and saved keys live here: back it up
+    expose: ["8501"]
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    ports: ["80:80", "443:443"]
+    environment:
+      - DOMAIN=${DOMAIN}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+    depends_on: [app]
+volumes:
+  caddy_data:

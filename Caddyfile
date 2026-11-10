@@ -1,0 +1,6 @@
+{$DOMAIN} {
+    # Closed system: uncomment and put your own public IP addresses to allow only them.
+    # @blocked not remote_ip 203.0.113.10 198.51.100.0/24
+    # respond @blocked "Not available" 403
+    reverse_proxy app:8501
+}
